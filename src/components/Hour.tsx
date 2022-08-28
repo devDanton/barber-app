@@ -1,4 +1,5 @@
 import { DateTimePickerAndroid, DatePickerOptions } from '@react-native-community/datetimepicker';
+import Moment from 'moment';
 import { View, Text, IButtonProps, IInputProps, VStack, Box } from 'native-base';
 import { Hourglass } from 'phosphor-react-native';
 import { useState } from 'react';
@@ -47,14 +48,14 @@ export function Hour({ mode, ...rest }: Props) {
         mb={10}
         justifyContent="center"
         onPressIn={showTimepicker}
-        value={date.getHours() + ':' + date.getMinutes()}
+        value={Moment(date).format("HH:mm")}
         {...rest}
       >
         {/* <Text
           color="white"
           fontSize="md"
-        >{date.toLocaleTimeString()}
-        </Text> */}
+        >{} 
+      </Text>*/}
       </Input>
     </VStack >
 

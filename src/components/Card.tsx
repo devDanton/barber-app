@@ -1,4 +1,5 @@
 import { VStack, HStack, Text, Select, Heading } from 'native-base';
+import Moment from 'moment';
 
 export type CardProps = {
   id: string;
@@ -44,7 +45,7 @@ export function Card({ data, onPress }: Props) {
           color="gray.100"
           fontWeight="normal"
           px={5}
-        >Agendado: {data.data}
+        >Agendado: {Moment(data.data).format("DD/MM/YY") + " às " + Moment(data.horario).format("HH:mm")}
         </Text>
         <Text
           mt={0.5}

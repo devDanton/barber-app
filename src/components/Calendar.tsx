@@ -1,4 +1,5 @@
 import { DateTimePickerAndroid, DatePickerOptions } from '@react-native-community/datetimepicker';
+import Moment from 'moment';
 import { View, Text, IButtonProps, IInputProps, VStack, Box } from 'native-base';
 import { Hourglass } from 'phosphor-react-native';
 import { useState } from 'react';
@@ -53,15 +54,15 @@ export function Calendar({ mode, ...rest }: Props) {
       mb={5}
       justifyContent="center"
       onPressIn={showDatepicker}
-      value={dataFormatada()}
+      value={Moment(date).format('DD/MM/YYYY')}
       {...rest}
     >
       {/* <Text
-          color="white"
-          fontSize="md"
-        >{dataFormatada()}
-        </Text> */}
-    </Input>
+        color="white"
+        fontSize="md"
+      >{ } 
+    </Text>*/}
+    </Input >
   );
 };
 
