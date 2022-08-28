@@ -1,12 +1,21 @@
 import { VStack, HStack, Text, Select, Heading } from 'native-base';
 
-type Props = {
-  cliente: string
-  horario: string
-  tipo: string
+export type CardProps = {
+  id: string;
+  cliente: string;
+  data: string;
+  horario: string;
+  corte: string;
+  barba: string;
+  sombrancelha: string;
 }
 
-export function Card({ cliente, horario, tipo }: Props) {
+type Props = {
+  data: CardProps;
+  onPress: () => void;
+}
+
+export function Card({ data, onPress }: Props) {
   return (
     <HStack justifyContent="center">
       <VStack
@@ -26,7 +35,7 @@ export function Card({ cliente, horario, tipo }: Props) {
           px={5}
           justifyContent="center"
           mb={1}
-        >Cliente: {cliente}
+        >Cliente: { }
         </Heading>
         <Text
           mb={1}
@@ -35,7 +44,7 @@ export function Card({ cliente, horario, tipo }: Props) {
           color="gray.100"
           fontWeight="normal"
           px={5}
-        >Agendado: {horario}
+        >Agendado: { }
         </Text>
         <Text
           mt={0.5}
@@ -43,7 +52,7 @@ export function Card({ cliente, horario, tipo }: Props) {
           color="gray.100"
           fontWeight="normal"
           px={5}
-        >Tipo: {tipo}
+        >Tipo: { }
         </Text>
       </VStack>
     </HStack >

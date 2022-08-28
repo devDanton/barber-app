@@ -5,21 +5,21 @@ import { useState } from 'react';
 import { Button } from './Button';
 import { Input } from './Input';
 'react-native-calendars/src/services';
+let hour: Date
 
-let data: Date;
-export const infoData = {
-  data
-};
+export const infoHour = {
+  hour
+}
 
 type Props = IInputProps & {
   mode: string
 }
-export function Calendar({ mode, ...rest }: Props) {
+export function Hour({ mode, ...rest }: Props) {
   const [date, setDate] = useState(new Date());
 
   const onChange = (event, selectedDate) => {
     setDate(selectedDate);
-    infoData.data = selectedDate;
+    infoHour.hour = selectedDate;
   };
 
   const showMode = (currentMode) => {
@@ -31,37 +31,33 @@ export function Calendar({ mode, ...rest }: Props) {
     });
   };
 
-  const showDatepicker = () => {
-    showMode('date');
+  const showTimepicker = () => {
+    showMode('time');
   };
 
-  function dataFormatada() {
-    let dia = date.getDate()
-    let mes = (date.getMonth() + 1)
-    let ano = date.getFullYear()
-    return dia + "/" + mes + "/" + ano
-  }
-
   return (
-    <Input
-      label='Data'
-      h={14}
-      bg="gray.500"
-      fontSize="md"
-      borderWidth={0}
-      px={5}
-      mb={5}
-      justifyContent="center"
-      onPressIn={showDatepicker}
-      value={dataFormatada()}
-      {...rest}
-    >
-      {/* <Text
+    <VStack>
+      <Input
+        label='Horário'
+        h={14}
+        bg="gray.500"
+        fontSize="md"
+        borderWidth={0}
+        px={5}
+        mb={10}
+        justifyContent="center"
+        onPressIn={showTimepicker}
+        value={date.getHours() + ':' + date.getMinutes()}
+        {...rest}
+      >
+        {/* <Text
           color="white"
           fontSize="md"
-        >{dataFormatada()}
+        >{date.toLocaleTimeString()}
         </Text> */}
-    </Input>
+      </Input>
+    </VStack >
+
   );
 };
 

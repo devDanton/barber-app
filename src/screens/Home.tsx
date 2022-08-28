@@ -1,9 +1,10 @@
 import { VStack, Heading, HStack, FlatList, Text, Pressable, Box } from "native-base"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigation } from "@react-navigation/native"
+import AsyncStorage from "@react-native-async-storage/async-storage"
 
 import { Button } from "../components/Button"
-import { Card } from "../components/Card"
+import { Card, CardProps } from "../components/Card"
 import { Input } from "../components/Input"
 import { Register } from "./Register"
 import { Loading } from "../components/Loading"
@@ -11,9 +12,21 @@ import { Loading } from "../components/Loading"
 export function Home() {
   const navigation = useNavigation()
 
+  const [data, setData] = useState<CardProps[]>([]);
+
   function handleRegister() {
     navigation.navigate('register');
   }
+
+  async function handleFetchData() {
+    const response = await AsyncStorage.getAllKeys();
+    console.log(response);
+  }
+
+  useEffect(() => {
+    handleFetchData();
+  }, []);
+
   return (
     <Pressable>
       <VStack
@@ -29,9 +42,15 @@ export function Home() {
         >
           <Heading mb={10} color="white" fontSize="2xl" > Barber App</Heading>
           <Text marginBottom={2} color="white" fontSize="lg">Agenda de horários</Text>
-
-          <Card cliente="Danton da Rosa Abreu" horario="14/08/2022 às 14:20" tipo="Corte, barba e sombrancelha" />
-
+          <FlatList
+            data={data}
+            keyExtractor={item => item.id}
+            renderItem={({ item }) =>
+              <Card
+                data={item}
+                onPress={() => { }} />
+            }>
+          </FlatList>
         </VStack>
         <Button
           title="Agendar"
