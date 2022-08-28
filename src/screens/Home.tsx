@@ -19,8 +19,9 @@ export function Home() {
   }
 
   async function handleFetchData() {
-    const response = await AsyncStorage.getAllKeys();
-    console.log(response);
+    const response = await AsyncStorage.getItem("@barberapp:agendamentos");
+    const data = response ? JSON.parse(response) : {};
+    setData([data]);
   }
 
   useEffect(() => {

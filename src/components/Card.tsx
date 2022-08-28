@@ -35,7 +35,7 @@ export function Card({ data, onPress }: Props) {
           px={5}
           justifyContent="center"
           mb={1}
-        >Cliente: { }
+        >Cliente: {data.cliente}
         </Heading>
         <Text
           mb={1}
@@ -44,7 +44,7 @@ export function Card({ data, onPress }: Props) {
           color="gray.100"
           fontWeight="normal"
           px={5}
-        >Agendado: { }
+        >Agendado: {data.data}
         </Text>
         <Text
           mt={0.5}
@@ -52,7 +52,16 @@ export function Card({ data, onPress }: Props) {
           color="gray.100"
           fontWeight="normal"
           px={5}
-        >Tipo: { }
+        >Tipo:
+          {data.corte && !data.barba && !data.sombrancelha ? " Corte " : ""}
+          {data.corte && data.barba && !data.sombrancelha ? " Corte, Barba" : ""}
+          {data.corte && !data.barba && data.sombrancelha ? " Corte, Sombrancelha " : ""}
+          {!data.corte && data.barba && !data.sombrancelha ? " Barba " : ""}
+          {!data.corte && data.barba && data.sombrancelha ? " Barba, Sombrancelha " : ""}
+          {!data.corte && !data.barba && data.sombrancelha ? " Sombrancelha" : ""}
+          {data.corte && data.barba && data.sombrancelha ? " Corte, Barba, Sombrancelha" : ""}
+
+
         </Text>
       </VStack>
     </HStack >

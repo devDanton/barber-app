@@ -25,38 +25,34 @@ export function Register() {
       const newData = {
         id,
         cliente,
-        data,
-        horario,
+        data: data.toDateString(),
+        horario: data.toTimeString(),
         corte,
         barba,
-        sombrancelha,
+        sombrancelha
       };
 
-      console.log(
-        id,
-        cliente,
-        data,
-        horario,
-        corte,
-        barba,
-        sombrancelha)
+      const jsonValue = JSON.stringify(newData)
+      await AsyncStorage.setItem("@barberapp:agendamentos", jsonValue);
+      const response = await AsyncStorage.getItem("@barberapp:agendamentos");
+      console.log(response);
 
-      await AsyncStorage.setItem("@barberapp:agendamentos", JSON.stringify(newData));
       Toast.show({
-        type: "seccess",
+        type: "success",
         text1: "Agendado com sucesso!"
-      })
+      });
     } catch (error) {
       console.log(error)
       Toast.show({
         type: "error",
         text1: "Não foi possivel cadastrar!"
-      })
+      });
     }
   }
 
   return (
     <VStack h="full" alignItems="center" bg="gray.700" px={8} pt={24}>
+      <Toast />
       <Heading mb={10} color="white">Agendar</Heading>
       <Text mb={5} color="white" fontSize="md"
       >Insira os dados solicitados</Text>
