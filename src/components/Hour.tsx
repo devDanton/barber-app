@@ -5,9 +5,8 @@ import { Hourglass } from 'phosphor-react-native';
 import { useState } from 'react';
 import { Button } from './Button';
 import { Input } from './Input';
-'react-native-calendars/src/services';
-let hour: Date
 
+let hour: Date
 export const infoHour = {
   hour
 }
@@ -36,6 +35,8 @@ export function Hour({ mode, ...rest }: Props) {
     showMode('time');
   };
 
+
+
   return (
     <VStack>
       <Input
@@ -52,7 +53,7 @@ export function Hour({ mode, ...rest }: Props) {
         {...rest}
       >
         {/* <Text
-          color="white"
+          color="gray.100"
           fontSize="md"
         >{} 
       </Text>*/}

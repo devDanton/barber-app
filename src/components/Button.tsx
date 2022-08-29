@@ -16,7 +16,7 @@ export function Button({ title, ...rest }: Props) {
     >
       <Heading
         fontSize="md"
-        color="white">{title}</Heading>
+        color="gray.100">{title}</Heading>
     </ButtonNativeBase>
   );
 }

@@ -18,7 +18,7 @@ export function Input({ label, ...rest }: Props) {
         fontSize="md"
         borderWidth={0}
         placeholderTextColor="gray.300"
-        color="white"
+        color="gray.100"
         px={5}
         mb={5}
         {...rest}

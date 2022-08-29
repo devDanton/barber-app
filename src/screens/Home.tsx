@@ -1,6 +1,6 @@
 import { VStack, Heading, HStack, FlatList, Text, Pressable, Box } from "native-base"
-import { useState, useEffect } from "react"
-import { useNavigation } from "@react-navigation/native"
+import { useCallback, useState } from "react"
+import { useFocusEffect, useNavigation } from "@react-navigation/native"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 
 import { Button } from "../components/Button"
@@ -20,13 +20,13 @@ export function Home() {
 
   async function handleFetchData() {
     const response = await AsyncStorage.getItem("@barberapp:agendamentos");
-    const data = response ? JSON.parse(response) : {};
-    setData([data]);
+    const data = response ? JSON.parse(response) : [];
+    setData(data);
   }
 
-  useEffect(() => {
+  useFocusEffect(useCallback(() => {
     handleFetchData();
-  }, []);
+  }, []));
 
   return (
     <Pressable>
@@ -41,9 +41,12 @@ export function Home() {
           flex={1}
           alignItems="center"
         >
-          <Heading mb={10} color="white" fontSize="2xl" > Barber App</Heading>
-          <Text marginBottom={2} color="white" fontSize="lg">Agenda de horários</Text>
+          <Heading mb={10} color="gray.100" fontSize="2xl" > Barber App</Heading>
+          <Text marginBottom={2} color="gray.100" fontSize="lg">Agenda de horários</Text>
+
           <FlatList
+            mb={5}
+            scrollEnabled
             data={data}
             keyExtractor={item => item.id}
             renderItem={({ item }) =>

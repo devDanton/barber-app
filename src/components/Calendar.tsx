@@ -58,7 +58,7 @@ export function Calendar({ mode, ...rest }: Props) {
       {...rest}
     >
       {/* <Text
-        color="white"
+        color="gray.100"
         fontSize="md"
       >{ } 
     </Text>*/}

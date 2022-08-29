@@ -3,17 +3,17 @@ import { useState } from 'react';
 import uuid from 'react-native-uuid'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Toast } from 'react-native-toast-message/lib/src/Toast';
+import Moment from 'moment';
 
 import { Button } from '../components/Button';
 import { Calendar, infoData } from '../components/Calendar';
 import { Input } from '../components/Input';
 import { Checkbox } from '../components/Checkbox';
 import { Hour, infoHour } from '../components/Hour';
+import { Navbar } from '../components/Navbar';
 
 export function Register() {
   const [cliente, setCliente] = useState('');
-  const [data, setData] = useState(new Date());
-  const [horario, setHorario] = useState(new Date());
   const [corte, setCorte] = useState(false);
   const [barba, setBarba] = useState(false);
   const [sombrancelha, setSombrancelha] = useState(false);
@@ -25,17 +25,21 @@ export function Register() {
       const newData = {
         id,
         cliente,
-        data: data.toDateString(),
-        horario: data.toTimeString(),
+        data: Moment(infoData.data.toLocaleString()).format('MM/DD/YY'),
+        horario: Moment(infoHour.hour.toLocaleString()).format('HH:mm'),
         corte,
         barba,
         sombrancelha
       };
 
-      const jsonValue = JSON.stringify(newData)
-      await AsyncStorage.setItem("@barberapp:agendamentos", jsonValue);
       const response = await AsyncStorage.getItem("@barberapp:agendamentos");
-      console.log(response);
+      const previousData = response ? JSON.parse(response) : [];
+
+      const data = [...previousData, newData];
+      await AsyncStorage.setItem("@barberapp:agendamentos", JSON.stringify(data));
+
+      // const barberap = await AsyncStorage.getItem("@barberapp:agendamentos");
+      // console.log(barberap);
 
       Toast.show({
         type: "success",
@@ -52,9 +56,10 @@ export function Register() {
 
   return (
     <VStack h="full" alignItems="center" bg="gray.700" px={8} pt={24}>
+      <Navbar />
       <Toast />
-      <Heading mb={10} color="white">Agendar</Heading>
-      <Text mb={5} color="white" fontSize="md"
+      <Heading mb={10} color="gray.100">Agendar</Heading>
+      <Text mb={5} color="gray.100" fontSize="md"
       >Insira os dados solicitados</Text>
 
       <VStack w="full" flex={1}>
@@ -64,16 +69,16 @@ export function Register() {
 
         <HStack>
           <Checkbox value='Corte' onChange={setCorte}>
-            <Text color="white" fontSize="xs">Corte</Text>
+            <Text color="gray.100" fontSize="xs">Corte</Text>
           </Checkbox>
 
           <Checkbox value='Barba' onChange={setBarba}
           >
-            <Text color="white" fontSize="xs">Barba</Text>
+            <Text color="gray.100" fontSize="xs">Barba</Text>
           </Checkbox>
 
           <Checkbox value='Sombrancelha' onChange={setSombrancelha}>
-            <Text color="white" fontSize="xs">Sombranc.</Text>
+            <Text color="gray.100" fontSize="xs">Sombranc.</Text>
           </Checkbox>
         </HStack>
       </VStack>

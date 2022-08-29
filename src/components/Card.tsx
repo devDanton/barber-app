@@ -1,5 +1,6 @@
 import { VStack, HStack, Text, Select, Heading } from 'native-base';
 import Moment from 'moment';
+import { Pressable } from 'react-native';
 
 export type CardProps = {
   id: string;
@@ -18,7 +19,7 @@ type Props = {
 
 export function Card({ data, onPress }: Props) {
   return (
-    <HStack justifyContent="center">
+    <Pressable>
       <VStack
         w="100%"
         bg="gray.500"
@@ -35,20 +36,16 @@ export function Card({ data, onPress }: Props) {
           fontWeight="bold"
           px={5}
           justifyContent="center"
-          mb={1}
         >Cliente: {data.cliente}
         </Heading>
         <Text
-          mb={1}
-          mt={0.5}
           fontSize="sm"
           color="gray.100"
           fontWeight="normal"
           px={5}
-        >Agendado: {Moment(data.data).format("DD/MM/YY") + " às " + Moment(data.horario).format("HH:mm")}
+        >Agendado: {Moment(data.data).format("DD/MM/YY") + " às " + data.horario}
         </Text>
         <Text
-          mt={0.5}
           fontSize="sm"
           color="gray.100"
           fontWeight="normal"
@@ -61,10 +58,8 @@ export function Card({ data, onPress }: Props) {
           {!data.corte && data.barba && data.sombrancelha ? " Barba, Sombrancelha " : ""}
           {!data.corte && !data.barba && data.sombrancelha ? " Sombrancelha" : ""}
           {data.corte && data.barba && data.sombrancelha ? " Corte, Barba, Sombrancelha" : ""}
-
-
         </Text>
       </VStack>
-    </HStack >
+    </Pressable >
   );
 }
