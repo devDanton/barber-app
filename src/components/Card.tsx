@@ -24,7 +24,7 @@ export function Card({ data, onPress }: Props) {
         w="100%"
         bg="gray.500"
         mb={5}
-        borderRadius={7}
+        borderRadius={10}
         borderWidth={3}
         color="gray.100"
         borderColor="secondary.700"

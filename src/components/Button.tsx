@@ -11,7 +11,8 @@ export function Button({ title, ...rest }: Props) {
       h={14}
       fontSize="sm"
       _pressed={{ bg: "primary.700" }}
-      mb={1}
+      mb={5}
+      borderRadius={10}
       {...rest}
     >
       <Heading

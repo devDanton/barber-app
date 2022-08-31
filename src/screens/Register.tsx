@@ -32,14 +32,12 @@ export function Register() {
         sombrancelha
       };
 
+      //obtem os dados salvos anteriormente
       const response = await AsyncStorage.getItem("@barberapp:agendamentos");
       const previousData = response ? JSON.parse(response) : [];
 
       const data = [...previousData, newData];
       await AsyncStorage.setItem("@barberapp:agendamentos", JSON.stringify(data));
-
-      // const barberap = await AsyncStorage.getItem("@barberapp:agendamentos");
-      // console.log(barberap);
 
       Toast.show({
         type: "success",
