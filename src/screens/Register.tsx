@@ -1,7 +1,7 @@
 import { Heading, HStack, Pressable, Text, View, VStack } from 'native-base';
 import { useState } from 'react';
 import uuid from 'react-native-uuid'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import { Toast } from 'react-native-toast-message/lib/src/Toast';
 import Moment from 'moment';
 
@@ -13,6 +13,7 @@ import { Hour, infoHour } from '../components/Hour';
 import { Navbar } from '../components/Navbar';
 
 export function Register() {
+  const { getItem, setItem } = useAsyncStorage("@barberapp:agendamentos");
   const [cliente, setCliente] = useState('');
   const [corte, setCorte] = useState(false);
   const [barba, setBarba] = useState(false);
@@ -25,20 +26,23 @@ export function Register() {
       const newData = {
         id,
         cliente,
-        data: Moment(infoData.data.toLocaleString()).format('MM/DD/YY'),
-        horario: Moment(infoHour.hour.toLocaleString()).format('HH:mm'),
+        data: infoData.data != undefined ? Moment(infoData.data.toLocaleString()).format('MM/DD/YY') : Moment(new Date()).format('MM/DD/YY'),
+        horario: infoHour.hour != undefined ? Moment(infoHour.hour.toLocaleString()).format('HH:mm') : Moment(new Date()).format('HH:mm'),
         corte,
         barba,
         sombrancelha
       };
 
+      infoData.data = new Date();
+      infoHour.hour = new Date();
+
       //obtem os dados salvos anteriormente
-      const response = await AsyncStorage.getItem("@barberapp:agendamentos");
+      const response = await getItem();
       const previousData = response ? JSON.parse(response) : [];
 
       const data = [...previousData, newData];
-      await AsyncStorage.setItem("@barberapp:agendamentos", JSON.stringify(data));
 
+      await setItem(JSON.stringify(data));
       Toast.show({
         type: "success",
         text1: "Agendado com sucesso!"

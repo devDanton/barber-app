@@ -8,6 +8,7 @@ import { Card, CardProps } from "../components/Card"
 import { Input } from "../components/Input"
 import { Register } from "./Register"
 import { Loading } from "../components/Loading"
+import { Filter } from "../components/Filter"
 
 export function Home() {
   const navigation = useNavigation()
@@ -43,8 +44,9 @@ export function Home() {
         >
           <Heading mb={10} color="gray.100" fontSize="2xl" > Barber App</Heading>
           <Text marginBottom={2} color="gray.100" fontSize="lg">Agenda de horários</Text>
-
+          <Filter />
           <FlatList
+
             mb={5}
             scrollEnabled
             data={data}
