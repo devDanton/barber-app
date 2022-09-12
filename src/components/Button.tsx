@@ -7,10 +7,10 @@ type Props = IButtonProps & {
 export function Button({ title, ...rest }: Props) {
   return (
     <ButtonNativeBase
-      bg="indigo.500"
+      bg="green.700"
       h={14}
       fontSize="sm"
-      _pressed={{ bg: "primary.700" }}
+      _pressed={{ bg: "green.600" }}
       mb={5}
       borderRadius={10}
       {...rest}

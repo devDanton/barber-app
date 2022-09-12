@@ -18,6 +18,7 @@ export function Register() {
   const [corte, setCorte] = useState(false);
   const [barba, setBarba] = useState(false);
   const [sombrancelha, setSombrancelha] = useState(false);
+  const [status, setStatus] = useState('');
 
   async function handleNew() {
     try {
@@ -30,7 +31,8 @@ export function Register() {
         horario: infoHour.hour != undefined ? Moment(infoHour.hour.toLocaleString()).format('HH:mm') : Moment(new Date()).format('HH:mm'),
         corte,
         barba,
-        sombrancelha
+        sombrancelha,
+        status: "pendente"
       };
 
       infoData.data = new Date();
@@ -51,7 +53,7 @@ export function Register() {
       console.log(error)
       Toast.show({
         type: "error",
-        text1: "Não foi possivel cadastrar!"
+        text1: "Não foi possivel agendar!"
       });
     }
   }

@@ -1,5 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import { Ended } from "../screens/Ended";
 import { Home } from "../screens/Home";
 import { Register } from "../screens/Register";
 
@@ -10,6 +10,7 @@ export function AppRoutes() {
     <Navigator screenOptions={{ headerShown: false }}>
       <Screen name="home" component={Home} />
       <Screen name="register" component={Register} />
+      <Screen name="ended" component={Ended} />
     </Navigator>
   )
 }

@@ -1,6 +1,7 @@
-import { VStack, HStack, Text, Select, Heading } from 'native-base';
+import { VStack, HStack, Text, Select, Heading, Icon, IconButton, IButtonProps, useTheme, Button } from 'native-base';
 import Moment from 'moment';
 import { Pressable } from 'react-native';
+import { Check, IconProps } from 'phosphor-react-native';
 
 export type CardProps = {
   id: string;
@@ -10,14 +11,16 @@ export type CardProps = {
   corte: string;
   barba: string;
   sombrancelha: string;
+  status: string;
 }
 
-type Props = {
+type Props = IconProps & {
   data: CardProps;
   onPress: () => void;
 }
 
 export function Card({ data, onPress }: Props) {
+  const { colors } = useTheme();
   return (
     <Pressable>
       <VStack
@@ -27,8 +30,9 @@ export function Card({ data, onPress }: Props) {
         borderRadius={10}
         borderWidth={3}
         color="gray.100"
-        borderColor="secondary.700"
+        borderColor={'green.700'}
         p={3}
+        justifyItems="center"
       >
         <Heading
           fontSize="md"
@@ -59,6 +63,8 @@ export function Card({ data, onPress }: Props) {
           {!data.corte && !data.barba && data.sombrancelha ? " Sombrancelha" : ""}
           {data.corte && data.barba && data.sombrancelha ? " Corte, Barba, Sombrancelha" : ""}
         </Text>
+        <Button borderRadius={10} mt={2} bg="gray.400" w="full" _pressed={{ bg: "green.700" }} onPress={onPress}>Finalizar
+        </Button>
       </VStack>
     </Pressable >
   );
