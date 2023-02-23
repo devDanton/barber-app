@@ -5,6 +5,11 @@
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
-    ]
+    ],
+    "icon": "./assets/icon.png",
+    "splash": {
+      "backgroundColor": "#202024",
+      "image": "./assets/splash.png"
+    }
   }
 }
