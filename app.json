@@ -3,13 +3,25 @@
     "name": "barber-app",
     "slug": "barber-app",
     "version": "1.0.0",
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "backgroundColor": "#202024",
+      "resizeMode": "contain",
       "image": "./assets/splash.png"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "ios": {},
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#202024"
+      }
     }
   }
 }
