@@ -98,8 +98,8 @@ export function Register() {
     <Pressable >
       <VStack className='flex w-full h-full items-center bg-black px-8 pt-24'>
         <Navbar />
-        <Heading className='text-white my-4 font-Black text-3xl'>Agendar</Heading>
         <Toast />
+        <Heading className='text-white mb-4 font-Black'>Agendar</Heading>
         <Text
           className='text-white my-4 font-medium text-base'
         >Insira os dados solicitados</Text>
@@ -109,7 +109,7 @@ export function Register() {
           <Calendar className="pb-2" mode='date' />
           <Hour className="pb-2" mode='time' />
 
-          <HStack className='w-full flex flex-row content-between pt-4'>
+          <HStack className='w-full flex flex-row content-between py-4'>
             <Checkbox value='Corte' onChange={setCorte}>
               <Text className='text-gray-300 text-base '>Corte</Text>
             </Checkbox>
@@ -122,9 +122,9 @@ export function Register() {
               <Text className='text-gray-300 text-base'>Sombran...</Text>
             </Checkbox>
           </HStack>
+          <Button className='w-auto' title="Agendar"
+            onPress={handleNewAppointmentRegister} />
         </VStack>
-        <Button className='w-full' title="Agendar"
-          onPress={handleNewAppointmentRegister} />
       </VStack >
     </Pressable>
   );

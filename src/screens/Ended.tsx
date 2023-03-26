@@ -10,15 +10,15 @@ export function Ended() {
 
   return (
     <VStack
+      className='bg-black'
       h="full"
       alignItems="center"
-      bg="gray.700"
       px={6}
       pt={24} >
       <Toast />
       <Navbar />
-      <Heading mb={10} color="gray.100">Finalizados</Heading>
-
+      <Heading mb={10} color="white">Finalizados</Heading>
+      <Text className='text-white'>Ended</Text>
       {/* <FlatList
         mb={5}
         scrollEnabled

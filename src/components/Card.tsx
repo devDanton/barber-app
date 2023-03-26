@@ -2,6 +2,7 @@ import { VStack, HStack, Text, Select, Heading, Icon, IconButton, IButtonProps, 
 import Moment from 'moment';
 import { Pressable } from 'react-native';
 import { Check, IconProps } from 'phosphor-react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export type CardProps = {
   _id: string;
@@ -34,6 +35,12 @@ type Props = IconProps & {
 
 let bg;
 export function Card({ data, onPress }: Props) {
+  // const navigation = useNavigation();
+
+  // function handleRegister() {
+  //   navigation.navigate("register");
+  // }
+
   return (
     <Pressable>
       <HStack

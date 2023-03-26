@@ -1,15 +1,17 @@
-import { VStack, Heading, HStack, Text, Pressable, Center, useTheme } from "native-base"
+import { VStack, Heading, HStack, Text, Pressable, Center, useTheme, Button as ButtonNativeBase } from "native-base"
 import React, { useCallback, useState } from "react"
+
 import { useFocusEffect, useNavigation } from "@react-navigation/native"
+
 import { Alert, FlatList } from "react-native";
 import { get_realm } from "../databases/realm";
 import { Toast } from 'react-native-toast-message/lib/src/Toast';
 
-import { Button } from "../components/Button";
 import { Card, CardProps } from "../components/Card";
 import { Filter } from "../components/Filter";
 import { ChatTeardropText } from "phosphor-react-native";
 import { Loading } from "../components/Loading";
+import Logo from "../assets/logo.svg"
 
 export function Home() {
   const { colors } = useTheme();
@@ -136,6 +138,13 @@ export function Home() {
     navigation.navigate("ended");
   }
 
+  function handleCarteira() {
+    navigation.navigate("wallet");
+  }
+  function handleGrafico() {
+    navigation.navigate("graphic");
+  }
+
   useFocusEffect(useCallback(() => {
     fetchAgendamentos();
   }, [status]));
@@ -145,9 +154,12 @@ export function Home() {
       <VStack
         className="w-full h-full bg-black"
       >
-        <HStack className="w-full bg-zinc-800 pt-10">
-          <Heading className="text-white font-bold text-4xl flex-1 my-5 text-center">Barber App</Heading>
-          <Toast />
+        <HStack className="w-full bg-background pt-10">
+          <HStack className="flex-1 justify-center px-8 items-center">
+            <Logo width={200} height={100} />
+            {/* <Heading className="text-white font-bold text-4xl my-5">Barber App</Heading> */}
+            <Toast />
+          </HStack>
         </HStack>
         <Toast />
         <VStack
@@ -192,12 +204,6 @@ export function Home() {
             )} />
           }
         </VStack>
-        {/* <Button className="w-full bg-transparent" title="Finalizados" onPress={handleFinalizados} /> */}
-        <Button
-          className="bg-zinc-800 text-gray-300"
-          title="Agendar"
-          onPress={handleRegister}
-        />
       </VStack>
     </Pressable >
   )

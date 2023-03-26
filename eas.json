@@ -12,8 +12,8 @@
         "buildConfiguration": "Debug"
       }
     },
-    "preview": {
-      "distribution": "internal"
+    "preview": { // Gerar APK
+      "distribution": "internal" //eas build -p android --profile preview
     },
     "production": {}
   },

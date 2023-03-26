@@ -9,6 +9,8 @@ import {
   Roboto_900Black,
 } from '@expo-google-fonts/roboto';
 import { Routes } from './src/routes';
+import { THEME } from './src/styles/theme'
+
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -19,7 +21,7 @@ export default function App() {
   });
 
   return (
-    <NativeBaseProvider>
+    <NativeBaseProvider theme={THEME}>
       <StatusBar
         showHideTransition='fade'
         animated={true}

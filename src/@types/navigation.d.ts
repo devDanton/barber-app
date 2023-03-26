@@ -4,6 +4,8 @@ export declare global {
       home: undefined;
       register: undefined;
       ended: undefined;
+      wallet: undefined;
+      graphic: undefined;
     }
   }
 }
